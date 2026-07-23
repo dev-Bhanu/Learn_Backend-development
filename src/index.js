@@ -8,6 +8,18 @@ import connectDb from "./db/index.js";
  })
 
 connectDb();
+.then(()=>{
+    app.listen(process.env.PORT || 8000 , ()=>{
+        console.log(`Server is running on port ${process.env.PORT || 8000}`);
+    }
+    app.on("error",(error)=>{
+        console.log("Error connecting to MongoDB",error);
+        throw error
+    })
+})
+.catch((err)=>{
+    console.log("Error connecting to MongoDB:", err);
+})
 
 
 
